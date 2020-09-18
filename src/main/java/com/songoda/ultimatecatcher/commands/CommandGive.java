@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 
 public class CommandGive extends AbstractCommand {
 
-    final UltimateCatcher instance;
+    private final UltimateCatcher instance;
 
     public CommandGive(UltimateCatcher instance) {
-        super(false, "give");
+        super(CommandType.CONSOLE_OK, "give");
         this.instance = instance;
     }
 
@@ -27,7 +27,7 @@ public class CommandGive extends AbstractCommand {
         if (args.length != 2) return ReturnType.SYNTAX_ERROR;
 
         final Player player = Bukkit.getPlayer(args[0]);
-        if (player == null && !args[0].trim().toLowerCase().equals("all")) {
+        if (player == null && !args[0].trim().equalsIgnoreCase("all")) {
             sender.sendMessage("Not a player...");
             return ReturnType.FAILURE;
         }

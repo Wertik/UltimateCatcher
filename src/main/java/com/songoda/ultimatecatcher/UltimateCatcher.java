@@ -178,11 +178,12 @@ public class UltimateCatcher extends SongodaPlugin {
 
     @Override
     public void onPluginDisable() {
+        // Nothing to do on disable.
     }
 
     @Override
     public void onDataLoad() {
-
+        // We have no data to load.
     }
 
     @Override

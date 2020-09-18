@@ -8,10 +8,10 @@ import java.util.List;
 
 public class CommandReload extends AbstractCommand {
 
-    final UltimateCatcher instance;
+    private final UltimateCatcher instance;
 
     public CommandReload(UltimateCatcher instance) {
-        super(false, "reload");
+        super(CommandType.CONSOLE_OK, "reload");
         this.instance = instance;
     }
 

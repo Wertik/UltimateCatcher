@@ -151,6 +151,8 @@ public class OldEntityUtils {
                 if (owner != null && !owner.trim().equals("") && !owner.equals("00000000-0000-0000-0000-000000000000"))
                     ((Fox) entity).setFirstTrustedPlayer(Bukkit.getOfflinePlayer(UUID.fromString(owner)));
                 break;
+            default:
+                break;
         }
 
         return entity;
@@ -158,9 +160,9 @@ public class OldEntityUtils {
 
 
     @Deprecated
-    public static LivingEntity spawnEntity(Location location, String json) {
+    public static LivingEntity spawnEntity(Location location, String jsonInput) {
         try {
-            json = json.replace("UC-", "");
+            String json = jsonInput.replace("UC-", "");
 
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(json);
@@ -257,7 +259,7 @@ public class OldEntityUtils {
                 case FOX:
                     String owner = (String) jsonObject.get("owner");
                     if (owner != null && !owner.trim().equals("") && !owner.equals("00000000-0000-0000-0000-000000000000"))
-                        ((Fox)entity).setFirstTrustedPlayer(Bukkit.getOfflinePlayer(UUID.fromString(owner)));
+                        ((Fox) entity).setFirstTrustedPlayer(Bukkit.getOfflinePlayer(UUID.fromString(owner)));
                     break;
             }
 
@@ -267,5 +269,4 @@ public class OldEntityUtils {
         }
         return null;
     }
-
 }

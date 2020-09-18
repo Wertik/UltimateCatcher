@@ -95,7 +95,7 @@ public class EntityListeners implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void InventorySnotch(InventoryPickupItemEvent event) {
+    public void onInventorySnotch(InventoryPickupItemEvent event) {
         if (eggs.containsKey(event.getItem().getUniqueId())) event.setCancelled(true);
     }
 
@@ -232,11 +232,9 @@ public class EntityListeners implements Listener {
             return;
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Citizens")) {
-            if (net.citizensnpcs.api.CitizensAPI.getNPCRegistry().isNPC(entity)) {
-                reject(egg, catcher, true);
-                return;
-            }
+        if (Bukkit.getPluginManager().isPluginEnabled("Citizens") && net.citizensnpcs.api.CitizensAPI.getNPCRegistry().isNPC(entity)) {
+            reject(egg, catcher, true);
+            return;
         }
 
         String val = "Mobs." + entity.getType().name() + ".Enabled";
@@ -244,6 +242,7 @@ public class EntityListeners implements Listener {
             reject(egg, catcher, true);
             return;
         }
+
         if (!configurationSection.getBoolean(val) && !player.hasPermission("ultimatecatcher.bypass.disabled")) {
             plugin.getLocale().getMessage("event.catch.notenabled")
                     .processPlaceholder("type", formatted).getMessage();
@@ -266,6 +265,7 @@ public class EntityListeners implements Listener {
             reject(egg, catcher, true);
             return;
         }
+
         int ch = catcher.getChance();
         double rand = Math.random() * 100;
         if (!(rand - ch < 0 || ch == 100) && !player.hasPermission("ultimatecatcher.bypass.chance")) {
@@ -288,15 +288,13 @@ public class EntityListeners implements Listener {
             return;
         }
 
-        if (ServerVersion.isServerVersionAtLeast(ServerVersion.V1_14)) {
-            if (entity instanceof Fox) {
-                AnimalTamer tamer = ((Fox) entity).getFirstTrustedPlayer();
-                if (tamer != null && !tamer.getUniqueId().equals(player.getUniqueId())
-                        && Settings.REJECT_TAMED.getBoolean()) {
-                    plugin.getLocale().getMessage("event.catch.notyours").sendPrefixedMessage(player);
-                    reject(egg, catcher, true);
-                    return;
-                }
+        if (ServerVersion.isServerVersionAtLeast(ServerVersion.V1_14) && entity instanceof Fox) {
+            AnimalTamer tamer = ((Fox) entity).getFirstTrustedPlayer();
+            if (tamer != null && !tamer.getUniqueId().equals(player.getUniqueId())
+                    && Settings.REJECT_TAMED.getBoolean()) {
+                plugin.getLocale().getMessage("event.catch.notyours").sendPrefixedMessage(player);
+                reject(egg, catcher, true);
+                return;
             }
         }
 
@@ -317,6 +315,7 @@ public class EntityListeners implements Listener {
 
         PlayerInteractEvent playerInteractEvent = new PlayerInteractEvent(player, Action.RIGHT_CLICK_BLOCK, null, entity.getLocation().getBlock(), BlockFace.UP);
         Bukkit.getPluginManager().callEvent(playerInteractEvent);
+
         if (playerInteractEvent.isCancelled()) {
             reject(egg, catcher, true);
             return;

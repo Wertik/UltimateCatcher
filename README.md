@@ -11,13 +11,13 @@
 
 <br />
 
-## Table of Contents 
+## Table of Contents
 
-* [Introduction](#introduction)
-* [Marketplace](#marketplace)
-* [Documentation](#documentation)
-* [Support](#support)
-* [Suggestions](#suggestions)
+*  [Introduction](#introduction)
+*  [Marketplace](#marketplace)
+*  [Documentation](#documentation)
+*  [Support](#support)
+*  [Suggestions](#suggestions)
 
 ## Introduction
 UltimateCatcher is a simple, yet powerful catcher plugin, that allows you to throw special catcher eggs at mobs and contain them in that egg, while keeping all their unique attributes until you are ready to release the mob. This allows for easy transportation of entities such as animals to your farms for breeding or collecting resources, villagers to your base for easy access to villager trading, or other special mobs that you want to keep or move somewhere easily without the hassle of having to make them follow or chase you. UltimateCatcher also keeps you guessing when you throw a catcher egg at a mob, through the use of catch chances which makes it so you might need multiple attempts to catch a mob depending on the catch chance of the catcher egg you are using. The plugin is highly configurable, and allows you to create your own unique eggs, with their own recipes, costs and catch chances. 
